@@ -6,4 +6,4 @@ app.get("/", (_, res) => {
     res.send("HEALTHCHECK OK!")
 })
 
-app.listen(5060)
+app.listen(5100)
