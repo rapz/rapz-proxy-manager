@@ -3,13 +3,12 @@ const ProxyChain = require('proxy-chain');
 
 
 function startServer({
-    email = "cesar.a.cavalcanti@gmail.com",
-    port = 5200,
+    email,
+    port,
     megabytes = 100,
-    internalProxy = "192.168.15.36:6001",
-    userUsername = "user3012",
-    userPassword = "password3012"
-
+    internalProxy,
+    userUsername,
+    userPassword
 }) {
 
     let bandwidthUsedByClosedConnectionsInBytes = 0;
@@ -76,7 +75,7 @@ startServer({
     email: "cesar.a.cavalcanti@gmail.com",
     port: 5200,
     megabytes: 1000,
-    internalProxy: "192.168.15.36:6001",
+    internalProxy: "proxy.rapz.com.br:6001",
     userUsername: "user3012",
     userPassword: "password3012"
 });
