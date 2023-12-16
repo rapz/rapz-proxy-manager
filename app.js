@@ -6,7 +6,7 @@ function startServer({
     email,
     port,
     megabytes = 100,
-    internalProxy,
+    proxies,
     userUsername,
     userPassword
 }) {
@@ -17,6 +17,9 @@ function startServer({
     let bandwidthLimitInMegabytes = megabytes;
     let bandwidthLimitInBytes = bandwidthLimitInMegabytes * Math.pow(1024, 2);
 
+    function proxyDaVez() {
+        return proxies[Math.floor(Math.random() * proxies.length)];
+    };
 
     const server = new ProxyChain.Server({
         port,
@@ -29,7 +32,7 @@ function startServer({
             }
             return {
                 requestAuthentication: username !== userUsername || password !== userPassword,
-                upstreamProxyUrl: `http://rapz:senha123@${internalProxy}`,
+                upstreamProxyUrl: `http://${proxyDaVez()}`,
                 failMsg: 'Bad username or password, please try again.',
                 customTag: { email },
             };
@@ -75,17 +78,11 @@ startServer({
     email: "cesar.a.cavalcanti@gmail.com",
     port: 5200,
     megabytes: 1000,
-    internalProxy: "proxy.rapz.com.br:6001",
-    userUsername: "user3012",
-    userPassword: "password3012"
-});
-
-
-startServer({
-    email: "cesar.a.cavalcanti@gmail.com",
-    port: 5201,
-    megabytes: 1000,
-    internalProxy: "proxy.rapz.com.br:6000",
+    proxies: [
+        "rapz:senha123@proxy.rapz.com.br:6001",
+        "rapz:senha123@proxy.rapz.com.br:6000",
+        "rapzz:X27OOTUNYFCIZ8G0QUK5XO8R@91.236.118.238:41099"
+    ],
     userUsername: "user3012",
     userPassword: "password3012"
 });
